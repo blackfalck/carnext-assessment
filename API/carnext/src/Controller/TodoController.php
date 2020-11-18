@@ -75,6 +75,6 @@ class TodoController extends AbstractController
         }
         $this->todoRepository->remove($todo);
 
-        return new JsonResponse(['status' => 'todo deleted'], Response::HTTP_OK);
+        return $this->json(['status' => 'todo deleted'], Response::HTTP_OK);
     }
 }

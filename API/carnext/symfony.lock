@@ -87,8 +87,26 @@
     "guzzlehttp/psr7": {
         "version": "1.7.0"
     },
+    "lcobucci/jwt": {
+        "version": "3.3.3"
+    },
+    "lexik/jwt-authentication-bundle": {
+        "version": "2.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "5b2157bcd5778166a5696e42f552ad36529a07a6"
+        },
+        "files": [
+            "config/packages/lexik_jwt_authentication.yaml"
+        ]
+    },
     "myclabs/deep-copy": {
         "version": "1.10.2"
+    },
+    "namshi/jose": {
+        "version": "7.2.3"
     },
     "nikic/php-parser": {
         "version": "v4.10.2"
@@ -343,6 +361,12 @@
     "symfony/polyfill-php80": {
         "version": "v1.20.0"
     },
+    "symfony/property-access": {
+        "version": "v5.1.8"
+    },
+    "symfony/property-info": {
+        "version": "v5.1.8"
+    },
     "symfony/routing": {
         "version": "5.1",
         "recipe": {
@@ -356,6 +380,30 @@
             "config/packages/routing.yaml",
             "config/routes.yaml"
         ]
+    },
+    "symfony/security-bundle": {
+        "version": "5.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.1",
+            "ref": "0a4bae19389d3b9cba1ca0102e3b2bccea724603"
+        },
+        "files": [
+            "config/packages/security.yaml"
+        ]
+    },
+    "symfony/security-core": {
+        "version": "v5.1.8"
+    },
+    "symfony/security-csrf": {
+        "version": "v5.1.8"
+    },
+    "symfony/security-guard": {
+        "version": "v5.1.8"
+    },
+    "symfony/security-http": {
+        "version": "v5.1.8"
     },
     "symfony/serializer": {
         "version": "v5.1.8"

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Controller;
 
+use App\Tests\BaseTest;
 
 class TodoControllerTest extends BaseTest
 {
@@ -14,7 +15,6 @@ class TodoControllerTest extends BaseTest
         $response = $this->json('/api/todo/', 'POST', $data);
 
         $this->assertEquals(201, $response->statusCode);
-
     }
 
     public function test_private_todo_create_no_title_fail()
@@ -25,6 +25,5 @@ class TodoControllerTest extends BaseTest
         $response = $this->json('/api/todo/', 'POST', $data);
 
         $this->assertEquals(422, $response->statusCode);
-
     }
 }
