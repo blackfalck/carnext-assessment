@@ -19,7 +19,10 @@
         "symfony/yaml": "5.1.*"
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.23"
+        "guzzlehttp/guzzle": "^7.2",
+        "phpunit/phpunit": "^7",
+        "symfony/maker-bundle": "^1.23",
+        "symfony/phpunit-bridge": "^5.1"
     },
     "config": {
         "optimize-autoloader": true,

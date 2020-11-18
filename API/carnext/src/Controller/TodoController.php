@@ -22,24 +22,23 @@ class TodoController extends AbstractController
     }
 
     /**
-     * @Route("/todo", name="todo", stateless=true)
+     * @Route("/api/todo", methods={"GET"}, name="todo", stateless=true)
      */
     public function index(SerializerInterface $serializer): Response
     {
-        $todos = $this->todoRepository->findAllArray();
+        $todos = $this->todoRepository->findAll();
         return new Response($serializer->serialize($todos, 'json'));
     }
 
     /**
-     * @Route("/todo/", name="add_todo", methods={"POST"}, stateless=true)
+     * @Route("/api/todo/", name="add_todo", methods={"POST"}, stateless=true)
      */
     public function create(Request $request, ValidatorInterface $validator): JsonResponse
     {
-        $todo = $this->todoRepository->create($request->get('title'));
+        $todo = $this->todoRepository->create(($request->get('title')));
         $errors = $validator->validate($todo);
 
         if ($errors->count() > 0) {
-
             return new JsonResponse($errors, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         $this->todoRepository->save($todo);
@@ -48,7 +47,7 @@ class TodoController extends AbstractController
     }
 
     /**
-     * @Route("/todo/{id}", name="update_todo", methods={"PUT"}, stateless=true)
+     * @Route("/api/todo/{id}", name="update_todo", methods={"PUT"}, stateless=true)
      */
     public function update($id, Request $request): JsonResponse
     {
@@ -65,7 +64,7 @@ class TodoController extends AbstractController
     }
 
     /**
-     * @Route("/todo/{id}", name="delete_todo", methods={"DELETE"}, stateless=true)
+     * @Route("/api/todo/{id}", name="delete_todo", methods={"DELETE"}, stateless=true)
      */
     public function delete($id, Request $request): JsonResponse
     {

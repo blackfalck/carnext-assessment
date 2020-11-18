@@ -28,9 +28,11 @@ class TodoRepository extends ServiceEntityRepository
     {
         $todo = new Todo();
 
-        $todo
-            ->setTitle($title)
-            ->setIsCompleted($isCompleted);
+        if ($title) {
+            $todo->setTitle($title);
+        }
+
+        $todo->setIsCompleted($title);
 
         return $todo;
     }
