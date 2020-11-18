@@ -1,0 +1,47 @@
+version: "2"
+
+services:
+  php:
+    image: 'bitnami/symfony:1'
+    ports:
+      - '8000:8000'
+    environment:
+      - SYMFONY_PROJECT_NAME=carnext
+      - MARIADB_HOST=mariadb
+      - MARIADB_PORT_NUMBER=3306
+      - MARIADB_USER=carnext
+      - MARIADB_PASSWORD=tables
+      - MARIADB_DATABASE=carnext
+    depends_on:
+      - mariadb
+    volumes:
+      - ../API:/app
+
+  mariadb:
+    image: mariadb:10.3
+    ports:
+      - 3306:3306
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=carnext
+      - MARIADB_PASSWORD=tables
+      - MARIADB_DATABASE=carnext
+    restart:
+      always
+    volumes:
+      - ../database/dump:/docker-entrypoint-initdb.d
+      - ../database/store:/var/lib/mysql
+
+  angular:
+    build:
+      context: .
+      dockerfile: angular/Dockerfile
+    volumes:
+      - ../APP/htdocs:/app
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - 4200:4200
+#    links:
+#      - httpd
+#    command: npm start
