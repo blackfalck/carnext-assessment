@@ -9,13 +9,15 @@ services:
       - SYMFONY_PROJECT_NAME=carnext
       - MARIADB_HOST=mariadb
       - MARIADB_PORT_NUMBER=3306
-      - MARIADB_USER=carnext
-      - MARIADB_PASSWORD=tables
+      - MARIADB_USER=root
+      - MARIADB_PASSWORD=secret
       - MARIADB_DATABASE=carnext
     depends_on:
       - mariadb
     volumes:
       - ../API:/app
+
+
 
   mariadb:
     image: mariadb:10.3
@@ -23,6 +25,7 @@ services:
       - 3306:3306
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_ROOT_PASSWORD=secret
       - MARIADB_USER=carnext
       - MARIADB_PASSWORD=tables
       - MARIADB_DATABASE=carnext
