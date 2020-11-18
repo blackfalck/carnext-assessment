@@ -35,46 +35,15 @@ class TodoRepository extends ServiceEntityRepository
         return $todo;
     }
 
-    public function save($todo)
+    public function save(Todo $todo)
     {
         $this->manager->persist($todo);
         $this->manager->flush();
     }
 
-    public function findAllArray()
+    public function remove(Todo $todo)
     {
-        $qb = $this
-            ->createQueryBuilder('u')
-            ->select('u');
-        return $qb->getQuery()->getArrayResult();
+        $this->manager->remove($todo);
+        $this->manager->flush();
     }
-
-    // /**
-    //  * @return Todo[] Returns an array of Todo objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Todo
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
