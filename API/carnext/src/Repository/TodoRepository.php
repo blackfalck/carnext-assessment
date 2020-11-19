@@ -21,10 +21,9 @@ class TodoRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Todo::class);
         $this->manager = $manager;
-
     }
 
-    public function create($title, $isCompleted = false): Todo
+    public function create($title, $userId, $isCompleted = false): Todo
     {
         $todo = new Todo();
 
@@ -32,7 +31,8 @@ class TodoRepository extends ServiceEntityRepository
             $todo->setTitle($title);
         }
 
-        $todo->setIsCompleted($title);
+        $todo->setUserId($userId);
+        $todo->setIsCompleted($isCompleted);
 
         return $todo;
     }
@@ -47,5 +47,17 @@ class TodoRepository extends ServiceEntityRepository
     {
         $this->manager->remove($todo);
         $this->manager->flush();
+    }
+
+    public function findAllFromUser($userId): array
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->where('u.user_id = :userId')
+            ->setParameter('userId', $userId);
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+
     }
 }

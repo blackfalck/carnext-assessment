@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// spinner in button
+@keyframes spinner-button {
+  to {transform: rotate(360deg);}
+}
+
+.spinner-button:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner-button .8s linear infinite;
+}
+
+// errors
+.error {
+  color: red;
+}
+
+/** end custom **/

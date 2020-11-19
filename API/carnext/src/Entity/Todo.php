@@ -29,6 +29,11 @@ class Todo
      */
     private $is_completed;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $user_id;
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('title', new NotBlank());
@@ -67,8 +72,21 @@ class Todo
     {
         return [
             'id' => $this->getId(),
+            'user_id' => $this->getUserId(),
             'title' => $this->getTitle(),
             'is_completed' => $this->getIsCompleted(),
         ];
+    }
+
+    public function getUserId(): ?int
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(int $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
     }
 }

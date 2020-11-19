@@ -1,0 +1,74 @@
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div *ngIf="!loading" class="row align-items-center pb-4 justify-content-center">
+
+  <div class="col-4">
+    <h2>Create Todo</h2>
+
+    <form [formGroup]="createTodoForm">
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-md-6">
+
+          <div *ngIf="error" class="alert alert-danger" role="alert">
+            {{error}}
+          </div>
+
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input id="title" type="text" class="form-control" formControlName="title">
+          </div>
+
+          <button (click)="onCreate()" type="button" class="btn btn-primary btn-block btn-special"
+                  [class.spinner-button]="loadingCreate" [disabled]="loadingCreate">
+            Create
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-4">
+    <h2>Todo</h2>
+    <div *ngFor="let todo of todos | filterCompleted:false">
+
+      <div class="row">
+        <div class="col-4">
+          <span class="title">{{todo.title}}</span>
+        </div>
+        <div class="col-4">
+          <button (click)="setCompleted(todo)" type="button" class="btn btn-primary btn-block"
+                  [class.spinner-button]="loadingButton" [disabled]="loadingButton">
+            Completed
+          </button>
+        </div>
+
+        <div class="col-4">
+          <button (click)="delete(todo.id)" type="button" class="btn btn-danger btn-block"
+                  [class.spinner-button]="loadingButton" [disabled]="loadingButton">
+            Delete
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-4">
+    <h2>Completed</h2>
+    <div *ngFor="let todo of todos | filterCompleted:true">
+
+      <div class="row">
+        <div class="col-6">
+          <span class="title">{{todo.title}}</span>
+        </div>
+
+        <div class="col-6">
+          <button (click)="delete(todo.id)" type="button" class="btn btn-danger btn-block"
+                  [class.spinner-button]="loadingButton" [disabled]="loadingButton">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

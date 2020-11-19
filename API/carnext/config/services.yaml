@@ -33,3 +33,7 @@ services:
     get_set_method_normalizer:
         class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
         tags: [ serializer.normalizer ]
+
+    tenant_user_service:
+        class: App\Services
+        arguments: [ '@security.token_storage' ]
