@@ -22,12 +22,19 @@ class AuthController extends AbstractController
     private $userRepository;
     private $tokenStorage;
 
-    public function __construct(TokenStorageInterface $tokenStorage, UserRepository $userRepository) {
+    public function __construct(TokenStorageInterface $tokenStorage, UserRepository $userRepository)
+    {
         $this->tokenStorage = $tokenStorage;
         $this->userRepository = $userRepository;
-
     }
 
+    /**
+     * @Route("/register", methods={"POST"}, name="register")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
+     * @param ValidatorInterface $validator
+     * @return JsonResponse
+     */
     public function register(Request $request, UserPasswordEncoderInterface $encoder, ValidatorInterface $validator)
     {
         $user = $this->userRepository->create($request->get('username'), $request->get('email'));
@@ -47,6 +54,7 @@ class AuthController extends AbstractController
     }
 
     /**
+     * @Route("/api/login_check", methods={"POST"}, name="login_check")
      * @param UserInterface $user
      * @param JWTTokenManagerInterface $JWTManager
      * @return JsonResponse
