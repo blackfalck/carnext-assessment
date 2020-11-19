@@ -69,7 +69,8 @@ class TodoController extends AbstractController
      */
     public function update($id, Request $request): JsonResponse
     {
-        $todo = $this->todoRepository->findOneBy(['id' => $id]);
+        $currentUser = $this->userService->getCurrentUser();
+        $todo = $this->todoRepository->findOneBy(['id' => $id, 'user_id' => $currentUser->getId()]);
         if (!$todo) {
             throw new NotFoundHttpException('Todo not found');
         }
@@ -87,7 +88,8 @@ class TodoController extends AbstractController
      */
     public function delete($id, Request $request): JsonResponse
     {
-        $todo = $this->todoRepository->findOneBy(['id' => $id]);
+        $currentUser = $this->userService->getCurrentUser();
+        $todo = $this->todoRepository->findOneBy(['id' => $id, 'user_id' => $currentUser->getId()]);
 
         if (!$todo) {
             throw new NotFoundHttpException('Todo not found');

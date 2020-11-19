@@ -16,8 +16,7 @@ services:
       - mariadb
     volumes:
       - ../API:/app
-
-
+    working_dir: /app/carnext
 
   mariadb:
     image: mariadb:10.3
