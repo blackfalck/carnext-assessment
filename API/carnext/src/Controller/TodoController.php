@@ -43,7 +43,7 @@ class TodoController extends AbstractController
         $currentUser = $this->userService->getCurrentUser();
 
         $todos = $this->todoRepository->findAllFromUser($currentUser->getId());
-        return new Response($serializer->serialize($todos, 'json'));
+        return $this->json($todos);
     }
 
     /**
@@ -57,7 +57,7 @@ class TodoController extends AbstractController
         $errors = $validator->validate($todo);
 
         if ($errors->count() > 0) {
-            return new JsonResponse($errors, Response::HTTP_UNPROCESSABLE_ENTITY);
+            return $this->json($errors, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         $this->todoRepository->save($todo);
 
