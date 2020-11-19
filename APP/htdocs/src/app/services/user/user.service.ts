@@ -14,6 +14,10 @@ export class UserService {
     this.currentUserSubject = new BehaviorSubject<UserLogin>(JSON.parse(localStorage.getItem('currentUser')));
   }
 
+  get currentUserValue(): UserLogin {
+    return this.currentUserSubject.value;
+  }
+
   login(data) {
     return this.restService.post('/api/login_check', data).then((user: any) => {
       if (!user || !user.token) {
@@ -28,5 +32,10 @@ export class UserService {
   storeUser(user) {
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.currentUserSubject.next(user);
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
   }
 }

@@ -20,7 +20,7 @@ import {AuthInterceptor} from './lib/interceptors/auth/auth.interceptor';
 import {UnauthorizedInterceptor} from './lib/interceptors/unauthorized/Unauthorized.interceptor';
 import {HomeComponent} from './pages/home/home.component';
 import {LoginComponent} from './pages/login/login.component';
-import {FilterCompletedPipe} from "./pipes/filter-filers/filter-completed.pipe";
+import {FilterCompletedPipe} from './pipes/filter-filers/filter-completed.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,6 @@ import {FilterCompletedPipe} from "./pipes/filter-filers/filter-completed.pipe";
     LoginComponent,
     SpinnerComponent,
     FilterCompletedPipe
-
   ],
   imports: [
     BrowserModule,
