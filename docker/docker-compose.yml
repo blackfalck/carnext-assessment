@@ -25,6 +25,7 @@ services:
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=carnext
       - MARIADB_USER=carnext
       - MARIADB_PASSWORD=tables
       - MARIADB_DATABASE=carnext
