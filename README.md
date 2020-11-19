@@ -1,5 +1,8 @@
 # CarNext Assessment
 
+<b> Disclaimer</b>
+This docker setup is for development only, and is not safe to use for production.
+
 ## Installation
 
 ### Create certificates for JWT:
