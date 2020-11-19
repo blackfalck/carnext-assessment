@@ -32,10 +32,10 @@ export class LoginComponent implements OnInit {
         this.error = null;
         this.router.navigate(['/'])
       }).catch((err) => {
-        this.error = 'Er is iets fout gegaan, probeer is nog eens.';
+        this.error = 'Something went wrong, please try again.';
 
         if (err.status === 401) {
-          this.error = 'De combinatie van het e-mailadres en het wachtwoord is niet bij ons bekend.';
+          this.error = 'The combination of username and password is not known.';
         }
         this.loading = false;
       })

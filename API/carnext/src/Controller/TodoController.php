@@ -38,7 +38,7 @@ class TodoController extends AbstractController
     /**
      * @Route("/api/todo", methods={"GET"}, name="todo", stateless=true)
      */
-    public function index(SerializerInterface $serializer): Response
+    public function index(SerializerInterface $serializer): JsonResponse
     {
         $currentUser = $this->userService->getCurrentUser();
 
@@ -52,8 +52,7 @@ class TodoController extends AbstractController
     public function create(Request $request, ValidatorInterface $validator): JsonResponse
     {
         $currentUser = $this->userService->getCurrentUser();
-        $requestdata = json_decode($request->getContent(), true);
-        $todo = $this->todoRepository->create(($requestdata['title']), $currentUser->getId());
+        $todo = $this->todoRepository->create($request->get('title'), $currentUser->getId());
         $errors = $validator->validate($todo);
 
         if ($errors->count() > 0) {
@@ -74,10 +73,9 @@ class TodoController extends AbstractController
         if (!$todo) {
             throw new NotFoundHttpException('Todo not found');
         }
-        $requestdata = json_decode($request->getContent(), true);
 
-        $todo->setTitle($requestdata['title']);
-        $todo->setIsCompleted($requestdata['is_completed']);
+        $todo->setTitle($request->get('title'));
+        $todo->setIsCompleted($request->get('is_completed'));
         $this->todoRepository->save($todo);
 
         return $this->json($todo->toArray(), Response::HTTP_OK);
