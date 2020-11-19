@@ -11,7 +11,7 @@ export class RestService {
   constructor(private http: HttpClient) {
     this.headers.set('Accept', 'multipart/form-data');
     this.headers.set('responseType', 'blob');
-    this.headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    this.headers.set('Content-Type', 'application/json');
   }
 
   get(urlPart) {
