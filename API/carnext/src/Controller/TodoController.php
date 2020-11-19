@@ -36,7 +36,9 @@ class TodoController extends AbstractController
     }
 
     /**
-     * @Route("/api/todo", methods={"GET"}, name="todo", stateless=true)
+     * @Route("/api/todo", methods={"GET"}, name="todo")
+     * @param SerializerInterface $serializer
+     * @return JsonResponse
      */
     public function index(SerializerInterface $serializer): JsonResponse
     {
@@ -47,7 +49,10 @@ class TodoController extends AbstractController
     }
 
     /**
-     * @Route("/api/todo/", name="add_todo", methods={"POST"}, stateless=true)
+     * @Route("/api/todo/", name="add_todo", methods={"POST"})
+     * @param Request $request
+     * @param ValidatorInterface $validator
+     * @return JsonResponse
      */
     public function create(Request $request, ValidatorInterface $validator): JsonResponse
     {
@@ -64,7 +69,10 @@ class TodoController extends AbstractController
     }
 
     /**
-     * @Route("/api/todo/{id}", name="update_todo", methods={"PUT"}, stateless=true)
+     * @Route("/api/todo/{id}", name="update_todo", methods={"PUT"})
+     * @param $id
+     * @param Request $request
+     * @return JsonResponse
      */
     public function update($id, Request $request): JsonResponse
     {
@@ -82,7 +90,10 @@ class TodoController extends AbstractController
     }
 
     /**
-     * @Route("/api/todo/{id}", name="delete_todo", methods={"DELETE"}, stateless=true)
+     * @Route("/api/todo/{id}", name="delete_todo", methods={"DELETE"})
+     * @param $id
+     * @param Request $request
+     * @return JsonResponse
      */
     public function delete($id, Request $request): JsonResponse
     {
