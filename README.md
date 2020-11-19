@@ -7,7 +7,9 @@ This docker setup is for development only, and is not safe to use for production
 
 ### Create certificates for JWT:
 Create the JWT directory in the config dir: `mkdir config/jwt`
+
 Generate in the JWT dir: `openssl genrsa -out config/jwt/private.pem -aes256 4096`
+
 Generate in the JWT dir:  `openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem`
 
 
